@@ -1,76 +1,174 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-    <title>Reconocimiento de Actividades en Personas Mayores</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reconocimiento de Actividades en Adultos Mayores</title>
     <style>
         body {
-            background-color: lightskyblue;
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
             text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 15px 0;
         }
 
         h1 {
             margin-top: 20px;
+            font-size: 24px;
+        }
+
+        h2 {
+            margin-top: 20px;
+            font-size: 20px;
         }
 
         form {
             display: inline-block;
-            text-align: left;
-            padding: 20px;
-            background-color: white;
+            text-align: center;
+            padding: 10px 20px;
+            background-color: #fff;
             border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            max-width: 400px;
+            margin-top: 10px;
         }
 
         label,
         input {
             display: block;
             margin: 10px 0;
+            font-size: 16px;
+        }
+
+        input[type="range"] {
+            width: 90%;
         }
 
         input[type="submit"] {
             margin-top: 20px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
         }
 
-        h2 {
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+
+        h3 {
             margin-top: 20px;
+            font-size: 18px;
         }
 
         p {
             margin: 10px 0;
+            font-size: 16px;
         }
     </style>
 </head>
 
 <body>
-    <h1>Modelo de predicción del tipo de actividad</h1>
-    <h2>Para probar el modelo, ingresa valores en cada uno de los campos</h2>
-    </br>
+    <header>
+        <h1>Modelo de Clasificación de actividades</h1>
+        <h2>Ingrese distintos valores para generar una predicción en base a ellos.</h2>
+    </header>
+
     <form method="post" action="/predict" enctype="multipart/form-data">
-        <label for="back_x">Valor de back_x:</label>
-        <input type="number" step="0.01" name="back_x" required>
+        <label for="back_x">Valor del sensor de Back_x:</label>
+        <input type="range" min="-2" max="2" step="0.001" name="back_x" id="back_x" required>
+        <p text-align="center"><span id="bx"></span></p>
 
-        <label for="back_y">Valor de back_y:</label>
-        <input type="number" step="0.01" name="back_y" required>
+        <label for="back_y">Valor del sensor de Back_y:</label>
+        <input type="range" min="-2" max="2" step="0.001" name="back_y" id="back_y" required>
+        <p text-align="center"><span id="by"></span></p>
 
-        <label for="back_z">Valor de back_z:</label>
-        <input type="number" step="0.01" name="back_z" required>
+        <label for="back_z">Valor del sensor de Back_z:</label>
+        <input type="range" min="-2" max="2" step="0.001" name="back_z" id="back_z" required>
+        <p text-align="center"><span id="bz"></span></p>
 
-        <label for="thigh_x">Valor de thigh_x:</label>
-        <input type="number" step="0.01" name="thigh_x" required>
+        <label for="thigh_x">Valor del sensor de Thigh_x:</label>
+        <input type="range" min="-2" max="2" step="0.001" name="thigh_x" id="thigh_x" required>
+        <p text-align="center"><span id="tx"></span></p>
 
-        <label for="thigh_y">Valor de thigh_y:</label>
-        <input type="number" step="0.01" name="thigh_y" required>
+        <label for="thigh_y">Valor del sensor de Thigh_y:</label>
+        <input type="range" min="-2" max="2" step="0.001" name="thigh_y" id="thigh_y" required>
+        <p text-align="center"><span id="ty"></span></p>
 
-        <label for="thigh_z">Valor de thigh_z:</label>
-        <input type="number" step="0.01" name="thigh_z" required>
+        <label for="thigh_z">Valor del sensor de Thigh_z:</label>
+        <input type="range" min="-2" max="2" step="0.001" name="thigh_z" id="thigh_z" required>
+        <p text-align="center"><span id="tz"></span></p>
 
-        <input type="submit" value="Enviar">
+        <input type="submit" value="Submit">
     </form>
 
     {% if resultado %}
-    <h2>Resultado:</h2>
-    <p>La predicción es: {{ resultado }}</p>
+    <h3>Resultado:</h3>
+    <p>La actividad es: {{ resultado }}</p>
     {% endif %}
+
+    <script>
+        var slider1 = document.getElementById("back_x");
+        var output1 = document.getElementById("bx");
+        output1.innerHTML = slider1.value;
+
+        slider1.oninput = function () {
+            output1.innerHTML = this.value;
+        }
+
+        var slider2 = document.getElementById("back_y");
+        var output2 = document.getElementById("by");
+        output2.innerHTML = slider2.value;
+
+        slider2.oninput = function () {
+            output2.innerHTML = this.value;
+        }
+
+        var slider3 = document.getElementById("back_z");
+        var output3 = document.getElementById("bz");
+        output3.innerHTML = slider3.value;
+
+        slider3.oninput = function () {
+            output3.innerHTML = this.value;
+        }
+
+        var slider4 = document.getElementById("thigh_x");
+        var output4 = document.getElementById("tx");
+        output4.innerHTML = slider4.value;
+
+        slider4.oninput = function () {
+            output4.innerHTML = this.value;
+        }
+
+        var slider5 = document.getElementById("thigh_y");
+        var output5 = document.getElementById("ty");
+        output5.innerHTML = slider5.value;
+
+        slider5.oninput = function () {
+            output5.innerHTML = this.value;
+        }
+
+        var slider6 = document.getElementById("thigh_z");
+        var output6 = document.getElementById("tz");
+        output6.innerHTML = slider6.value;
+
+        slider6.oninput = function () {
+            output6.innerHTML = this.value;
+        }
+
+    </script>
+
 </body>
 
 </html>
