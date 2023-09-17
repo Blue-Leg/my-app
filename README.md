@@ -1,6 +1,6 @@
-# Interfaz web para utilizar el modelo Random Forest
-Demostración del software usado para mostrar el funcionamiento del modelo óptimo obtenido.
+# Web interface to use Random Forest model
+Software demonstration used to showcase the operation of the optimal model obtained.
 
-Para ejecutar este programa, tras haber descargado el folder, se debe añadir el archivo .joblib del modelo entrenado que se encuentra en el link de Google Drive, y colocarlo en el mismo folder para poder ejecutar correctamente el archivo en cuestión.
+To run this program, after downloading the folder, you must add the .joblib file of the trained model located in the Google Drive link and place it in the same folder to correctly execute the respective file.
 
 Link: https://drive.google.com/drive/folders/1G-NWHzNU2dk_r7hDLaGXWzYIIUICkP6p
