@@ -23,6 +23,3 @@ To run this program, follow these steps:
 - Estefanía Pérez Yeo
 - Francisco Javier Sanchez Panduro
 - Vanessa Méndez Palacios
-
-## Usage
-Once you have followed the setup instructions and have the required files in the project folder, you can launch the web interface by running the Python script provided. Access the interface through a web browser to interact with the Random Forest model and witness its predictive capabilities.
